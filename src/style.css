@@ -2,4 +2,79 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
+}
+
+.container {
+  margin: 5rem 3rem 0 3rem;
+  border: 1px solid rgba(139, 139, 139, 0.2);
+  text-shadow: 1px 1px rgb(139, 139, 139);
+  box-shadow: 5px 5px 5px 10px #e2e1e1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(109, 108, 108, 0.4);
+}
+
+.header h1 {
+  font-size: 1.4rem;
+  color: rgb(59, 59, 59);
+}
+
+.reload::before {
+  content: "\f2f1";
+  color: rgb(139, 139, 139);
+}
+
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(109, 108, 108, 0.4);
+  padding: 1rem;
+}
+
+#text-field {
+  width: 95%;
+  border: none;
+  padding: 1rem;
+}
+
+#text-field::placeholder {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.enter {
+  content: "\f2f6";
+  font-size: 0.7rem;
+  color: rgb(187, 185, 185);
+}
+
+.task-description {
+  margin-left: 1.88rem;
+  color: rgb(59, 59, 59);
+}
+
+.task-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(109, 108, 108, 0.4);
+}
+
+.clear-div {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(243, 241, 241);
+}
+
+.clear-div a {
+  color: rgb(187, 185, 185);
 }
