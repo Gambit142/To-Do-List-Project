@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import './style.css';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
