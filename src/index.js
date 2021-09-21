@@ -22,10 +22,10 @@ const TODOLIST_ARRAY = [
 const createToDoListDiv = array => {
   let task = '';
   array.forEach(div => {
-    task += `<div>
+    task += `<div class="task-div">
     <div>
     <input type="checkbox" id="task-${div.index}" name="task-${div.index}" value="${div.completed}">
-    <label for="task-${div.index}">${div.description}</label><br>
+    <label for="task-${div.index}" class="task-description">${div.description}</label><br>
     </div>
     <div><i class="fas fa-ellipsis-v"></i></div>
     </div>`
