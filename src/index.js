@@ -33,15 +33,15 @@ const createToDoListDiv = (array) => {
   TODOLIST_CONTAINER.innerHTML = task;
 };
 
-let sortingFunction = (a, b) => {
+const sortingFunction = (a, b) => {
   let comparison = 0;
-    if (a.index > b.index) {
-      comparison = 1;
-    } else if (a.index < b.index) {
-      comparison = -1;
-    }
+  if (a.index > b.index) {
+    comparison = 1;
+  } else if (a.index < b.index) {
+    comparison = -1;
+  }
   return comparison;
-}
+};
 
 TODOLIST_ARRAY.sort(sortingFunction);
 createToDoListDiv(TODOLIST_ARRAY);
