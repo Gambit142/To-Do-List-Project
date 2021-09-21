@@ -19,20 +19,20 @@ const TODOLIST_ARRAY = [
   },
 ];
 
-const createToDoListDiv = array => {
+const createToDoListDiv = (array) => {
   let task = '';
-  array.forEach(div => {
+  array.forEach((div) => {
     task += `<div class="task-div">
     <div>
     <input type="checkbox" id="task-${div.index}" name="task-${div.index}" value="${div.completed}">
     <label for="task-${div.index}" class="task-description">${div.description}</label><br>
     </div>
     <div><i class="fas fa-ellipsis-v"></i></div>
-    </div>`
+    </div>`;
   });
   TODOLIST_CONTAINER.innerHTML = task;
-}
+};
 
-TODOLIST_ARRAY.sort((a,b) => (a.index > b.index) ? 1 : ((b.index > a.index) ? -1 : 0));
+TODOLIST_ARRAY.sort((a, b) => a.index > b.index ? 1 : b.index > a.index ? -1 : 0);
 
 createToDoListDiv(TODOLIST_ARRAY);

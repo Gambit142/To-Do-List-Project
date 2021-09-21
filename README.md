@@ -29,7 +29,7 @@ The website allows the user do the following:
 ## Built With
 
 - HTML, CSS, JavaScript
-- Git, Github
+- Git, Github, Webpack
 
 ## Prerequisites
 Basic understanding of HTML, JavaScript, CSS Git and GitHub
