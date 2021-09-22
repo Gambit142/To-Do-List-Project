@@ -1,10 +1,13 @@
-// eslint-disable-next-line import/prefer-default-export
-export const interaction = (e) => {
+export default (e, todoListArray, textDescription) => {
+  todoListArray.forEach((object) => {
+    if (object.index === parseInt(e.target.id, 10)) {
+      object.completed = e.target.checked;
+    }
+  });
+  localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
   if (e.target.checked) {
-    e.target.value = true;
-    console.log(e.target.value);
+    textDescription.style.textDecoration = 'line-through';
   } else {
-    e.target.value = false;
-    console.log(e.target.value);
+    textDescription.style.textDecoration = 'none';
   }
 };
