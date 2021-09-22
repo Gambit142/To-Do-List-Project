@@ -5,7 +5,7 @@
 
 > |Mobile Version|Desktop Version|
 > |--------------|-----------------|
-> |![screenshot](Snapshot1.png).|![screenshot2](Snapshot2.png)|
+> |![screenshot](Snapshot2.png).|![screenshot2](Snapshot1.png)|
 
 
 - The To Do List Project is a website project that helps the user organize his/her day by allowing the user do the following:
