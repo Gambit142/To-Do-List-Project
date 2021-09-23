@@ -47,12 +47,24 @@ export const clickDeleteButton = (array) => {
   const deleteHandler = document.querySelectorAll('.delete');
   deleteHandler.forEach((handler, index) => {
     handler.addEventListener('click', () => {
-      const filteredArray = array.filter((book) => array.indexOf(book) !== index);
+      const filteredArray = array.filter((task) => array.indexOf(task) !== index);
       filteredArray.forEach((obj, index) => {
         obj.index = index + 1;
       });
       localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
       window.location.reload();
     });
+  });
+};
+
+export const deleteCompletedTask = (array) => {
+  const deleteCompletedBtn = document.querySelector('.clear-div');
+  deleteCompletedBtn.addEventListener('click', () => {
+    const filteredArray = array.filter((obj) => obj.completed !== true);
+    filteredArray.forEach((obj, index) => {
+      obj.index = index + 1;
+    });
+    localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
+    window.location.reload();
   });
 };
