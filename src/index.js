@@ -1,29 +1,14 @@
 import './style.css';
 import interaction from './interactive.js';
+import enterTask from './functionality.js';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
-let todoListArray = [
-  {
-    description: 'Do the laundry',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Visit Parents',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Bathe the dog',
-    completed: false,
-    index: 3,
-  },
-];
+const textField = document.getElementById('text-field');
+console.log(textField);
+const todoListArray = JSON.parse(localStorage.getItem('listOfTasks')) || [];
 
-const CURRENT_STORAGE = JSON.parse(localStorage.getItem('listOfTasks'));
-if (CURRENT_STORAGE) {
-  todoListArray = CURRENT_STORAGE;
-}
+const enterIcon = document.getElementById('enter-button');
+console.log(enterIcon);
 
 const createToDoListDiv = (array) => {
   let task = '';
@@ -52,16 +37,17 @@ const createToDoListDiv = (array) => {
   });
 };
 
-const sortingFunction = (a, b) => {
-  let comparison = 0;
-  if (a.index > b.index) {
-    comparison = 1;
-  } else if (a.index < b.index) {
-    comparison = -1;
-  }
-  return comparison;
-};
+enterIcon.addEventListener('click', (e) => {
+  enterTask(e, textField, todoListArray);
+  createToDoListDiv(todoListArray);
+});
 
-todoListArray.sort(sortingFunction);
+textField.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    if (textField.value === '') return;
+    enterTask(e, textField, todoListArray);
+    createToDoListDiv(todoListArray);
+  }
+});
 
 createToDoListDiv(todoListArray);
