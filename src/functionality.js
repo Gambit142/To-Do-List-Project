@@ -42,3 +42,17 @@ export const clickEditButton = () => {
     });
   });
 };
+
+export const clickDeleteButton = (array) => {
+  const deleteHandler = document.querySelectorAll('.delete');
+  deleteHandler.forEach((handler, index) => {
+    handler.addEventListener('click', () => {
+      const filteredArray = array.filter((book) => array.indexOf(book) !== index);
+      filteredArray.forEach((obj, index) => {
+        obj.index = index + 1;
+      });
+      localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
+      window.location.reload();
+    });
+  });
+};
