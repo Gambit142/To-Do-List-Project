@@ -1,14 +1,13 @@
 import './style.css';
 import interaction from './interactive.js';
-import enterTask from './functionality.js';
+// eslint-disable-next-line import/no-cycle
+import enterTask, { editTasks, clickEditButton } from './functionality.js';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
 const textField = document.getElementById('text-field');
-console.log(textField);
-let todoListArray = JSON.parse(localStorage.getItem('listOfTasks')) || [];
+const todoListArray = JSON.parse(localStorage.getItem('listOfTasks')) || [];
 
 const enterIcon = document.getElementById('enter-button');
-console.log(enterIcon);
 
 const createToDoListDiv = (array) => {
   let task = '';
@@ -22,7 +21,7 @@ const createToDoListDiv = (array) => {
     task += `<div class="task-div">
     <div>
     <input type="checkbox" data-target="task-${div.index}" id="${div.index}" name="task-${div.index}" ${checked}>
-    <label style="text-decoration: ${state};" for="task-${div.index}" id="task-${div.index}" class="task-description">${div.description}</label><br>
+    <input type="text" value="${div.description}" style="text-decoration: ${state};" for="task-${div.index}" id="task-${div.index}" class="task-description"><br>
     </div>
     <div><i class="fas fa-ellipsis-v more" data-target="button-${div.index}"></i></div>
     </div>
@@ -40,26 +39,21 @@ const createToDoListDiv = (array) => {
     });
   });
   const moreButton = document.querySelectorAll('.more');
+
   moreButton.forEach((btn) => {
     const dropdownMenu = document.getElementById(btn.dataset.target);
     btn.addEventListener('click', () => {
       dropdownMenu.classList.toggle('show');
     });
   });
-  // const editHandler = document.querySelectorAll('.edit');
-  // console.log(editHandler);
-  // editHandler.forEach((edit) => {
-  //   const textDescription = document.getElementById(edit.dataset.target);
-  //   edit.addEventListener('click', () => {
-  //     textDescription.contentEditable = true;
-  //   });
-  // });
-  // localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
+
+  editTasks(todoListArray);
 };
 
 enterIcon.addEventListener('click', (e) => {
   enterTask(e, textField, todoListArray);
   createToDoListDiv(todoListArray);
+  window.location.reload();
 });
 
 textField.addEventListener('keypress', (e) => {
@@ -67,18 +61,9 @@ textField.addEventListener('keypress', (e) => {
     if (textField.value === '') return;
     enterTask(e, textField, todoListArray);
     createToDoListDiv(todoListArray);
+    window.location.reload();
   }
 });
 
 createToDoListDiv(todoListArray);
-
-const editHandler = document.querySelectorAll('.edit');
-console.log(editHandler);
-editHandler.forEach((edit) => {
-  todoListArray = JSON.parse(localStorage.getItem('listOfTasks'));
-  const textDescription = document.getElementById(edit.dataset.target);
-  edit.addEventListener('click', () => {
-    textDescription.contentEditable = true;
-  });
-});
-localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
+clickEditButton();
