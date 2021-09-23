@@ -1,7 +1,7 @@
 import './style.css';
 import interaction from './interactive.js';
 // eslint-disable-next-line import/no-cycle
-import enterTask, { editTasks, clickEditButton } from './functionality.js';
+import enterTask, { editTasks, clickEditButton, clickDeleteButton } from './functionality.js';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
 const textField = document.getElementById('text-field');
@@ -27,7 +27,7 @@ const createToDoListDiv = (array) => {
     </div>
     <div id="button-${div.index}" class="dropdown-menu">
     <a href="#" class="edit" data-target="task-${div.index}">Edit</a>
-    <a href="#">Delete</a>
+    <a href="#" class="delete">Delete</a>
     </div>`;
   });
   TODOLIST_CONTAINER.innerHTML = task;
@@ -67,3 +67,4 @@ textField.addEventListener('keypress', (e) => {
 
 createToDoListDiv(todoListArray);
 clickEditButton();
+clickDeleteButton(todoListArray);
