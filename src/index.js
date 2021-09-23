@@ -5,7 +5,7 @@ import enterTask from './functionality.js';
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
 const textField = document.getElementById('text-field');
 console.log(textField);
-const todoListArray = JSON.parse(localStorage.getItem('listOfTasks')) || [];
+let todoListArray = JSON.parse(localStorage.getItem('listOfTasks')) || [];
 
 const enterIcon = document.getElementById('enter-button');
 console.log(enterIcon);
@@ -24,7 +24,11 @@ const createToDoListDiv = (array) => {
     <input type="checkbox" data-target="task-${div.index}" id="${div.index}" name="task-${div.index}" ${checked}>
     <label style="text-decoration: ${state};" for="task-${div.index}" id="task-${div.index}" class="task-description">${div.description}</label><br>
     </div>
-    <div><i class="fas fa-ellipsis-v"></i></div>
+    <div><i class="fas fa-ellipsis-v more" data-target="button-${div.index}"></i></div>
+    </div>
+    <div id="button-${div.index}" class="dropdown-menu">
+    <a href="#" class="edit" data-target="task-${div.index}">Edit</a>
+    <a href="#">Delete</a>
     </div>`;
   });
   TODOLIST_CONTAINER.innerHTML = task;
@@ -35,6 +39,22 @@ const createToDoListDiv = (array) => {
       interaction(e, todoListArray, textDescription);
     });
   });
+  const moreButton = document.querySelectorAll('.more');
+  moreButton.forEach((btn) => {
+    const dropdownMenu = document.getElementById(btn.dataset.target);
+    btn.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+  });
+  // const editHandler = document.querySelectorAll('.edit');
+  // console.log(editHandler);
+  // editHandler.forEach((edit) => {
+  //   const textDescription = document.getElementById(edit.dataset.target);
+  //   edit.addEventListener('click', () => {
+  //     textDescription.contentEditable = true;
+  //   });
+  // });
+  // localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
 };
 
 enterIcon.addEventListener('click', (e) => {
@@ -51,3 +71,14 @@ textField.addEventListener('keypress', (e) => {
 });
 
 createToDoListDiv(todoListArray);
+
+const editHandler = document.querySelectorAll('.edit');
+console.log(editHandler);
+editHandler.forEach((edit) => {
+  todoListArray = JSON.parse(localStorage.getItem('listOfTasks'));
+  const textDescription = document.getElementById(edit.dataset.target);
+  edit.addEventListener('click', () => {
+    textDescription.contentEditable = true;
+  });
+});
+localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
