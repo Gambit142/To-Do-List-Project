@@ -59,6 +59,7 @@
 .task-description {
   margin-left: 1.88rem;
   color: rgb(59, 59, 59);
+  border: none;
 }
 
 .task-div {
@@ -73,6 +74,7 @@
   text-align: center;
   padding: 1rem;
   background-color: rgb(243, 241, 241);
+  border-top: 5px solid rgba(109, 108, 108, 0.6);
 }
 
 .clear-div a {

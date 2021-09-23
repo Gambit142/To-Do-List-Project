@@ -4,6 +4,7 @@ import interaction from './interactive.js';
 import enterTask, {
   editTasks, clickEditButton,
   clickDeleteButton, deleteCompletedTask,
+  restartTask,
 } from './functionality.js';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
@@ -72,3 +73,4 @@ createToDoListDiv(todoListArray);
 clickEditButton();
 clickDeleteButton(todoListArray);
 deleteCompletedTask(todoListArray);
+restartTask();

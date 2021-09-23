@@ -19,6 +19,8 @@ export const editTasks = (array) => {
         array.filter((object, objectIndex) => {
           if (taskIndex === objectIndex) {
             object.description = tasks.value;
+            tasks.style.outline = 'none';
+            tasks.blur();
           }
           return false;
         });
@@ -65,6 +67,14 @@ export const deleteCompletedTask = (array) => {
       obj.index = index + 1;
     });
     localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
+    window.location.reload();
+  });
+};
+
+export const restartTask = () => {
+  const reloadButton = document.querySelector('.reload');
+  reloadButton.addEventListener('click', () => {
+    localStorage.setItem('listOfTasks', JSON.stringify([]));
     window.location.reload();
   });
 };
