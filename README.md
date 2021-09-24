@@ -22,7 +22,7 @@ The website allows the user do the following:
 
 - Mark a selected task as complete
 
-- Remove all tasks at once once completed
+- Remove all completed tasks at once from the list of tasks
 
 - Repriorirtize tasks by dragging tasks up and down the list
 
