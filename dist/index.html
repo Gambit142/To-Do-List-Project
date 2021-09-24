@@ -3,13 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous"/>
   <title>To-Do-List-Project</title>
 <script defer src="main.js"></script></head>
 <body>
-  <section>
-    <div>
+  <section class="container">
+    <div class="header">
       <h1>Today's To Do</h1>
+      <i class="fas fa-sync-alt reload"></i>
     </div>
+    <form>
+      <div class="form-container">
+        <label for="text-field"></label>
+        <input type="text" name="text-field" id="text-field" placeholder="Add to your list">
+        <i class="fas fa-sign-in-alt enter" id="enter-button"></i>
+      </div>
+      <div class="todo-lists-div"></div>
+      <div class="clear-div"><a href="#">Clear All Completed</a></div>
+    </form>
   </section>
 </body>
 </html>
