@@ -6,6 +6,7 @@ import enterTask, {
   clickDeleteButton, deleteCompletedTask,
   restartTask,
 } from './functionality.js';
+import draggable, { draggover } from './draggable.js';
 
 const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
 const textField = document.getElementById('text-field');
@@ -22,7 +23,7 @@ const createToDoListDiv = (array) => {
       checked = 'checked';
       state = 'line-through';
     }
-    task += `<div class="task-div">
+    task += `<div class="task-div draggable" draggable="true" id="draggable-${div.index}">
     <div>
     <input type="checkbox" data-target="task-${div.index}" id="${div.index}" name="task-${div.index}" ${checked}>
     <input type="text" value="${div.description}" style="text-decoration: ${state};" for="task-${div.index}" id="task-${div.index}" class="task-description"><br>
@@ -74,3 +75,9 @@ clickEditButton();
 clickDeleteButton(todoListArray);
 deleteCompletedTask(todoListArray);
 restartTask();
+
+const draggables = document.querySelectorAll('.draggable');
+const listContainer = document.querySelector('.list-container');
+draggable(draggables);
+console.log(draggables);
+draggover(listContainer);
