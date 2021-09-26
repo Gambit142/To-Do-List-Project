@@ -96,3 +96,13 @@
 .dropdown-menu a {
   padding: 0.2rem 0;
 }
+
+.draggable {
+  cursor: move;
+}
+
+.dragging {
+  opacity: 0.6;
+  border: 1px solid #000;
+  background-color: #333;
+}
