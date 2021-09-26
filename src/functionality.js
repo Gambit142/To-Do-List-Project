@@ -1,4 +1,6 @@
 // eslint-disable-next-line import/no-cycle
+import interaction from './interactive.js';
+
 export default (e, textField, todoListArray) => {
   if (textField.value === '') return;
   e.preventDefault();
@@ -11,7 +13,7 @@ export default (e, textField, todoListArray) => {
   localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
 };
 
-export const editTasks = (array) => {
+const editTasks = (array) => {
   const individualTasks = document.querySelectorAll('.task-description');
   individualTasks.forEach((tasks, taskIndex) => {
     tasks.addEventListener('keypress', (e) => {
@@ -77,4 +79,46 @@ export const restartTask = () => {
     localStorage.setItem('listOfTasks', JSON.stringify([]));
     window.location.reload();
   });
+};
+
+export const createToDoListDiv = (array) => {
+  let task = '';
+  array.forEach((div) => {
+    let checked = '';
+    let state = 'none';
+    if (div.completed) {
+      checked = 'checked';
+      state = 'line-through';
+    }
+    task += `<div class="task-div draggable" draggable="true" id="draggable-${div.index}">
+    <div>
+    <input type="checkbox" data-target="task-${div.index}" id="${div.index}" name="task-${div.index}" ${checked}>
+    <input type="text" value="${div.description}" style="text-decoration: ${state};" for="task-${div.index}" id="task-${div.index}" class="task-description"><br>
+    </div>
+    <div><i class="fas fa-ellipsis-v more" data-target="button-${div.index}"></i></div>
+    </div>
+    <div id="button-${div.index}" class="dropdown-menu">
+    <a href="#" class="edit" data-target="task-${div.index}">Edit</a>
+    <a href="#" class="delete">Delete</a>
+    </div>`;
+  });
+  const TODOLIST_CONTAINER = document.querySelector('.todo-lists-div');
+  TODOLIST_CONTAINER.innerHTML = task;
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((checkbox) => {
+    const textDescription = document.getElementById(checkbox.dataset.target);
+    checkbox.addEventListener('change', (e) => {
+      interaction(e, array, textDescription);
+    });
+  });
+  const moreButton = document.querySelectorAll('.more');
+
+  moreButton.forEach((btn) => {
+    const dropdownMenu = document.getElementById(btn.dataset.target);
+    btn.addEventListener('click', () => {
+      dropdownMenu.classList.toggle('show');
+    });
+  });
+
+  editTasks(array);
 };
