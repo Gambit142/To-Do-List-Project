@@ -26,7 +26,6 @@ textField.addEventListener('keypress', (e) => {
     enterTask(e, textField, todoListArray);
     createToDoListDiv(todoListArray);
     window.location.reload();
-    // document.getElementById('text-field').focus();
   }
 });
 
