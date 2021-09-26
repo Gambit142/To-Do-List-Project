@@ -11,6 +11,7 @@ export default (draggables) => {
         obj.index = i + 1;
       });
       localStorage.setItem('listOfTasks', JSON.stringify(readArray));
+      window.location.reload();
     });
   });
 };
@@ -44,19 +45,7 @@ export const draggover = (container) => {
       const readArray = JSON.parse(localStorage.getItem('listOfTasks'));
       const result = readArray.filter((task) => task.index === idReplaced);
       newStorage.push(...result);
-      console.log(newStorage);
     });
     localStorage.setItem('listOfTasks', JSON.stringify(newStorage));
   });
-//   const lists = [...document.querySelectorAll('.draggable')];
-//   const newStorage = [];
-//   console.log(lists);
-//   lists.forEach((list) => {
-//     const idReplaced = parseInt(list.id.replace('draggable-', ''), 10);
-//     console.log(idReplaced);
-//     const readArray = JSON.parse(localStorage.getItem('listOfTasks'));
-//     const result = readArray.filter((task) => task.index === idReplaced);
-//     newStorage.push(...result);
-//   });
-//   localStorage.setItem('listOfTasks', JSON.stringify(newStorage));
 };
