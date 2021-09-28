@@ -13,6 +13,11 @@ export default (e, textField, todoListArray) => {
   localStorage.setItem('listOfTasks', JSON.stringify(todoListArray));
 };
 
+const setLocalStorage = (array) => {
+  localStorage.setItem('listOfTasks', JSON.stringify(array));
+  window.location.reload();
+};
+
 const editTasks = (array) => {
   const individualTasks = document.querySelectorAll('.task-description');
   individualTasks.forEach((tasks, taskIndex) => {
@@ -55,8 +60,7 @@ export const clickDeleteButton = (array) => {
       filteredArray.forEach((obj, index) => {
         obj.index = index + 1;
       });
-      localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
-      window.location.reload();
+      setLocalStorage(filteredArray);
     });
   });
 };
@@ -68,16 +72,14 @@ export const deleteCompletedTask = (array) => {
     filteredArray.forEach((obj, index) => {
       obj.index = index + 1;
     });
-    localStorage.setItem('listOfTasks', JSON.stringify(filteredArray));
-    window.location.reload();
+    setLocalStorage(filteredArray);
   });
 };
 
 export const restartTask = () => {
   const reloadButton = document.querySelector('.reload');
   reloadButton.addEventListener('click', () => {
-    localStorage.setItem('listOfTasks', JSON.stringify([]));
-    window.location.reload();
+    setLocalStorage([]);
   });
 };
 
