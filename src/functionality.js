@@ -121,6 +121,5 @@ export const createToDoListDiv = (array) => {
       dropdownMenu.classList.toggle('show');
     });
   });
-
   editTasks(array);
 };
