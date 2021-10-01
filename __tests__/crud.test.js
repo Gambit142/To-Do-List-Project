@@ -49,7 +49,7 @@ describe('Tests to check if CRUD functions works', () => {
 
     // Assert
     expect(storage.array.length).toEqual(1);
-    expect(storage.array[0].completed).toBeFalsy();
+    expect(storage.array[0].completed).toBe(false);
     expect(list).toHaveLength(1);
   });
   test('check if description is edited', () => {
@@ -69,7 +69,7 @@ describe('Tests to check if CRUD functions works', () => {
     statusUpdate(storage.array, 0);
 
     // Assert
-    expect(storage.array[0].completed).toBeTruthy();
+    expect(storage.array[0].completed).toBe(true);
     expect(storage.array.length).toEqual(1);
   });
   test('check if completed task is deleted', () => {
